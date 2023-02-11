@@ -5,9 +5,9 @@ Author:       Jeremiah Hansen
 Last Updated: 1/9/2023
 -----------------------------------------------------------------------------*/
 
-USE ROLE HOL_ROLE;
-USE WAREHOUSE HOL_WH;
-USE DATABASE HOL_DB;
+USE ROLE HOL_DE_ROLE;
+USE WAREHOUSE HOL_DE_WH;
+USE DATABASE HOL_DE_DB;
 
 
 -- ----------------------------------------------------------------------------
@@ -16,7 +16,7 @@ USE DATABASE HOL_DB;
 
 USE SCHEMA RAW_POS;
 
-ALTER WAREHOUSE HOL_WH SET WAREHOUSE_SIZE = XLARGE;
+ALTER WAREHOUSE HOL_DE_WH SET WAREHOUSE_SIZE = XLARGE;
 CALL SYSTEM$WAIT(5, 'SECONDS');
 
 COPY INTO ORDER_HEADER
@@ -32,7 +32,7 @@ MATCH_BY_COLUMN_NAME = CASE_SENSITIVE;
 -- See how many new records are in the stream (this may be a bit slow)
 --SELECT COUNT(*) FROM HARMONIZED.POS_FLATTENED_V_STREAM;
 
-ALTER WAREHOUSE HOL_WH SET WAREHOUSE_SIZE = XSMALL;
+ALTER WAREHOUSE HOL_DE_WH SET WAREHOUSE_SIZE = XSMALL;
 
 
 -- ----------------------------------------------------------------------------
